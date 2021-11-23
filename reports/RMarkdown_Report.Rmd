@@ -14,15 +14,28 @@ knitr::opts_knit$set(root.dir= normalizePath('..'))
 library(ProjectTemplate)
 load.project()
 ```
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+### Tips
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+*put things in bold*
+
+
+## Title
+
+Introduction
+
+
+In reviewing the dataset, 
+  
 
 ```{r cars}
 summary(cars)
 ```
+
+The results display that the number of students enrolling on the course has reduced over the number of sessions. This leads onto further questions as to why this may be. 
+
+
+### Recognise the challenges posed by the data 
 
 ## Including Plots
 
