@@ -56,7 +56,7 @@ ggplot(countries_w_name, aes(x=country_name, y=n), group=region) +
   theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) +
   labs(title = "Number of student enrolments by country",
        x = "Country", y = "Number of enrolment (log scale)") 
-# This is still a bit messy and doesn't really show me anything
+# This is still a bit messy and doesn't really show me anything so don't want to use this but will keep it as a point of reference
 
 
 # Plotting a boxplot instead to see if that will show region more clearly
