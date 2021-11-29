@@ -1,7 +1,7 @@
 ---
 title: "CSC8631 Data Management and Exploratory Data Analysis"
 author: "Ambreen Masud"
-date: "18/11/2021"
+date: "`r Sys.Date()`"
 output: pdf_document
 ---
 
@@ -15,24 +15,57 @@ library(ProjectTemplate)
 load.project()
 ```
 
-### Tips
+# *An analysis of Newcastle University's Future Learn Course in Cyber Security*
 
-*put things in bold*
+### *Introduction*
+This project was commissioned by Newcastle University to gain insights into an online Future Learn course in cyber security and assess the productivity of the course over a course of 7 runs. 
+
+Following a CRISP-DM approach, the analysis in this report followed a process which included:
+
+*Gaining an understanding of Newcastle University's business needs and determining the goals of the project based on these needs 
+*Understanding the properties of the data, including assessing data quality
+*Preparing the data through
+*Data Deployment
+
+In understanding the consumers, which in this case is the students, there are opportunties to put measures in place to ensure more effective courses are being run with improved student attainment. This is aligned with the recommendations outlined by the Higher Education Commission (2016), who suggest that learning analytics inform student support.
 
 
-## Title
+This report will conclude with...
 
-Introduction
+ 
 
 
-In reviewing the dataset, 
-  
+### *Business Understanding*
+
+[Newcastle University](https://www.ncl.ac.uk/) is a leading university in the United Kingdom
+------ info about NC ------
+Newcastle University use [Future Learn](https://www.futurelearn.com/), an online learning platform, to deliver a range of courses to a wide variety of students globally. 
+
+Before analysing this project, a number of presumptions were made on the dataset:
+
+1. 
+
+------	Assumptions made by the project 
+-----	Determine data mining goals
+
+The questions posed during this 
+
+
+
+
 
 ```{r cars}
 summary(cars)
 ```
 
 The results display that the number of students enrolling on the course has reduced over the number of sessions. This leads onto further questions as to why this may be. 
+
+### Data Understanding 
+
+
+```{r echo=FALSE}
+colnames(all_enrolments)
+```
 
 
 ### Recognise the challenges posed by the data 
@@ -46,3 +79,7 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+### References
+Higher Education Commission (2016) From bricks to clicks: The potential of data analytics in higher education.  
+https://www.policyconnect.org.uk/research/report-bricks-clicks-potential-data-and-analytics-higher-education
