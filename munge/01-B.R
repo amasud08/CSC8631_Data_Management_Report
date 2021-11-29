@@ -1,8 +1,3 @@
-setwd("~/Desktop/CSC8631_Report")
-
-library(ProjectTemplate)
-load.project()
-
 # Installing countrycode to add country and region to the data 
 install.packages("countrycode")   # install the package 
 library(countrycode)              # load the library
