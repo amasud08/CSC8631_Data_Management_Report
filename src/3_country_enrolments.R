@@ -1,10 +1,14 @@
 #### Where are the majority of students situated?
 
+# Installed packages countrycode and grepel for this section. This is included in the pre-processing script.
+
+
 head(all_enrolments)
 # In looking at the data, there are two columns that can show student location, country and detected_country
 # detected_country seems to have more populated data so using that for analysis
 
 
+# The processing for the variable countries has been added to the munge file so you don't need to run this code. 
 countries <- all_enrolments %>%
   select(detected_country) %>%        # selecting detected countries from all enrolments 
   count(detected_country) %>%         # Then getting the count of those countries
@@ -13,23 +17,7 @@ countries <- all_enrolments %>%
   arrange(desc(n))                    # arranging the data in order of the most enrollments by country
 
 
-# make a plot to show the country data 
-ggplot(countries, aes(x=detected_country, y=n)) +                             # plotting x and y axis from countries data 
-  geom_point(aes(colour=detected_country), size = 2, show.legend = FALSE) +   # setting the point colour + size + removing the legend 
-  geom_text(aes(detected_country, label = detected_country), nudge_x = 3) +   # Adding the country code text to the plot, using nudge to keep point and text distinct 
-  scale_y_log10() +                                                           # changing the scale to a log scale 
-  theme_minimal() +
-  theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) +      # removing the x axis labels as too congested
-  labs(title = "Number of student enrolments by country",
-       x = "Country", y = "Numbers of enrolment (log scale)") 
-# made this plot but it shows nothing so want to add countries to the data to plot that differently
-
-
-# Found a package called countrycode which can help add country and region to the data to see where exactly students are from
-install.packages("countrycode")   # install the package 
-library(countrycode)              # load the library
-
-# manipulating the data to add country
+# manipulating the data to add country name and region - Run code
 countries_w_name <- countries %>%
   mutate(country_name = countrycode(sourcevar = detected_country,          # calling on the countrycode function and accessing the detected_country column
                                     origin = "iso2c",                           # taking the original 2 digit country code
@@ -42,24 +30,7 @@ countries_w_name <- countries %>%
                               custom_match = c("Réunion" = "Sub-Saharan Africa"))) # initial analysis showed that there was no match with Réunion so adding that manually
 
 
-# installing ggrepel to help with labeling on plots and points
-install.packages("ggrepel")
-library(ggrepel)
-
-
-# Plotting the results to see if adding countries will make a difference
-ggplot(countries_w_name, aes(x=country_name, y=n), group=region) +
-  geom_point(aes(colour=region), size = 4) +
-  geom_text_repel(aes(label=country_name)) +
-  scale_y_log10() +
-  theme_minimal() +
-  theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) +
-  labs(title = "Number of student enrolments by country",
-       x = "Country", y = "Number of enrolment (log scale)") 
-# This is still a bit messy and doesn't really show me anything so don't want to use this but will keep it as a point of reference
-
-
-# Plotting a boxplot instead to see if that will show region more clearly
+# Plotting a boxplot tp show where the students are from by country and region 
 country_boxplot <- ggplot(countries_w_name, aes(x=region, y=n, fill=region)) +
   geom_boxplot() +
   geom_point(position=position_jitterdodge(),alpha=0.3) +
