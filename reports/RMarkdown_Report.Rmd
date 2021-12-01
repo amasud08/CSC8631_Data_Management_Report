@@ -1,7 +1,7 @@
 ---
-title: "CSC8631 Data Management and Exploratory Data Analysis"
-author: "Ambreen Masud"
-date: "`r Sys.Date()`"
+title: "**CSC8631: An Exploratory Data Analysis of Newcastle University's Future Learn Course in Cyber Security**"
+author: "**By Ambreen Masud**"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: pdf_document
 ---
 
@@ -15,62 +15,165 @@ library(ProjectTemplate)
 load.project()
 ```
 
-# *An analysis of Newcastle University's Future Learn Course in Cyber Security*
 
-### *Introduction*
-This project was commissioned by Newcastle University to gain insights into an online Future Learn course in cyber security and assess the productivity of the course over a course of 7 runs. 
+## **1. Introduction**
 
-Following a CRISP-DM approach, the analysis in this report followed a process which included:
+This project was commissioned by Newcastle University to gain insights into an online Future Learn course in cyber security. The aim of this project is to conduct an analysis on data provided by provided by Newcastle University of the course, in order to gain an insight into course productivity, the learners, and better understand future course delivery. This course was delivered over 7 runs, with the initial run beginning in September 2016 and the final run beginning in September 2018. On average, each run had a total of 62 steps in order for students to complete the course. ---
 
-*Gaining an understanding of Newcastle University's business needs and determining the goals of the project based on these needs 
-*Understanding the properties of the data, including assessing data quality
-*Preparing the data through
-*Data Deployment
+The structure of this report follows the CRISP-DM approach carried out in the data analysis. This methodology is as follows:
 
-In understanding the consumers, which in this case is the students, there are opportunties to put measures in place to ensure more effective courses are being run with improved student attainment. This is aligned with the recommendations outlined by the Higher Education Commission (2016), who suggest that learning analytics inform student support.
+* **Business Understanding** - Gaining an understanding of Newcastle University's business needs and determining the goals of this project based on those needs 
+* **Data Understanding** - Understanding the properties of the data provided, including assessing data quality
+* **Data Preparation and Modeling** - Cleaning, constructing and formatting the data, readying it for analysis and visually displaying results and outputs
+* **Deployment** - Producing outputs of the analysis covered in this project, and concluding on the project
 
-
-This report will conclude with...
-
- 
+This report answers key questions which were based on Newcastle University's business needs, with a focus on developing an understanding of the learners. The findings of the initial analysis also led to further analysis in order to further develop the findings of this report. This report will conclude with... ------------
 
 
-### *Business Understanding*
+## **2. Business Understanding**
 
-[Newcastle University](https://www.ncl.ac.uk/) is a leading university in the United Kingdom
------- info about NC ------
-Newcastle University use [Future Learn](https://www.futurelearn.com/), an online learning platform, to deliver a range of courses to a wide variety of students globally. 
+[Newcastle University](https://www.ncl.ac.uk/) is a leading university in the United Kingdom, with a global reputation for academia, research and employability. The university collaborates closely with [Future Learn](https://www.futurelearn.com/), an online learning platform, to deliver a range of courses to a wide variety of students globally. This project analysed a Future Learn course run by Newcastle University entitled *"Cyber Security:Safety at Home, Online, in Life"*. 
 
-Before analysing this project, a number of presumptions were made on the dataset:
+#### **2.1 Data Assumptions**
+Before analysing this project, a number of assumptions were made on the dataset:
 
-1. 
+* The data will display how many students enrolled on the course and will likely show that more students enrolled as each run progressed.
+* The data will show where students are based geographically, which will provide insights into which countries to target in future course promotional activities. 
+* Analysing the student demographics will provide insights into understanding who to market future course promotional activities. 
 
-------	Assumptions made by the project 
------	Determine data mining goals
+#### **2.2 Business Questions**
+The data assumptions led to a number of questions during this project:
 
-The questions posed during this 
+1. How many students enrolled per run?
+2. Where are the majority of students situated?
+3. What are the student demographics and who should be targeted for future marketing perspectives?
+
+These questions can not only determine analytical insights into the current course, but it can also support future marketing drives in increasing enrolments. In understanding the consumers, which in this case are the students, there are opportunities to put measures in place to ensure more effective courses are being run with improved student attainment. As an educational institution and a business, these are key goals in developing the business objectives of the university. This is aligned with the recommendations outlined by the Higher Education Commission (2016), who suggest that learning analytics should inform student development.
+
+In answering the business questions effectively, the data mining process included cleaning and transforming the data for plotting using 
+
+Calculating and plotting the numbers of student enrolled per run.
+2. Calculating and plotting the numbers of students per country and region over the total run of courses. 
+3. Calculating and plotting demographic data over each run. 
+
+In assessing this ___________
 
 
+## **3. Data Understanding** 
 
+The dataset provided by Newcastle University comprised of 7 PDF files and 52 CSV files. Each dataset is differentiated by which run the data was collected from, so the records vary depending on the run. The PDF files provide information on the course overview of each run, highlighting each step that students need to complete as part of the course. The CSV files included within the dataset are: 
 
+* **Archetype Survey Responses** - Responses from a survey conducted on better understanding the learners and their needs and motivations. Runs 1 to 2 contain no data, whereas runs 3 to 7 contain data. 
+* **Enrolments** - Student enrolment records, including enrolment dates and times, and information on student profile. Data is available for all runs. 
+* **Leaving Survey Responses** - Responses from a survey conducted when students left the course, including information on the date and time of when students left, the reasons why students and what step they ended the course on. Runs 1 to 3 contain no data, whereas runs 4 to 7 have data. 
+* **Question Response** - Responses from quizzes that the students took as part of the course. Data is available for all runs. 
+* **Step Activity** - Records on step completion, including information on start and finish dates and times. Data is available for all runs. 
+* **Team members** - ID information on the members of the course organising team. Data is available from run 2 to 7. 
+* **Video Stats** - 
+* **Weekly Sentiment Survey Responses** - 
 
-```{r cars}
-summary(cars)
+For the purposes of this analysis and in line with the business objectives and key questions, the enrolments data will be assessed in further detail. Further processing on other datasets may be required, depending on the results of the analysis on enrolments. 
+
+There are 7 CSV files entitled *Enrolments*, each with a number from 1 to 7 indicating which run each dataset belongs to. Each dataset has 14 identically named columns as can be seen below. 
+
+```{r col_names, echo=FALSE}
+colnames(cyber.security.1_enrolments)
 ```
+Column 1 provides information about the student's ID number, whilst columns 2 and 3 provide information about when students enrolled and when they unenrolled, with column 4 highlighting student status. Columns 5 and 6 provide information about student's participation on the course, whilst columns 7 to 13 provide personal information about each student. An additional column was added to this data to clearly highlight which run is being looked at, which is the final column in the dataset. 
 
-The results display that the number of students enrolling on the course has reduced over the number of sessions. This leads onto further questions as to why this may be. 
-
-### Data Understanding 
-
+In assessing the data quality, some of the data has missing values with empty fields and through glimpsing the data, much of it is with fields labelled *"Unknown"*. This can be seen in the table below which highlights a portion of the dataset and displays data is incomplete in some parts. This will be further assessed and cleaned in the data preparation portion of this report. 
 
 ```{r echo=FALSE}
-colnames(all_enrolments)
+all_enrolments %>%
+  select(learner_id, fully_participated_at, gender, country, age_range, highest_education_level) %>%
+  head() %>%
+  gt() %>%       # use gt package to make a table
+  tab_header(title = "Sample of the enrolments dataset") %>%
+  cols_label(learner_id = "Learner ID", fully_participated_at = "Fully Participated", 
+             gender = "Gender", country = "Country",
+             age_range = "Age Range", highest_education_level = "Education Level")  #Change labels
 ```
+
+## **4. Data Preparation and Modelling**
+
+This section will cover the blablahblah 
+and will be divided according to the business questions. 
+
+In order to process the data easily, the enrolments data from each run was given an extra column to indicate which run the data belonged to. This was then combined into a new dataset entitled *all_enrolments*. The new dataset has a total of `r ncol(all_enrolments)` columns and `r nrow(all_enrolments)` rows. The types of data included in the dataset are categorical and datetime. 
+
+This combined dataset has been used as the basis for all of the analysis on the business questions outlined in section 1, and data will be cleaned according to the analysis as to avoid data gaps as much as possible. 
+
+#### **4.1 How many students enrolled per run?**
+
+
+```{r numbers}
+num_of_students_per_run
+```
+
+```{r number_of_students, echo=FALSE}
+# Plotting the data to see what it shows
+plot_num_of_students <- ggplot(num_of_students_per_run, aes(x=run, y=n)) +
+  geom_line() +                        # including a line to highlight 
+  geom_point(colour="deeppink1", size=3) +     # changing the colour of the points 
+  xlim(0, 7) +                         # setting the limits of the x axis
+  ylim(0, 15000) +                     # setting the limits of the y axis
+  theme_light() +                      # want a white background 
+  labs(title = "Number of student enrolments per run",
+       x = "Run", y = "Number of students") 
+
+plot_num_of_students
+```
+
+As can be seen in the plot, the number of students enrolling on the course has reduced after every session. There is a large difference between the first run and the last run, with a `r format(round((nrow(cyber.security.1_enrolments) - nrow(cyber.security.7_enrolments))/nrow(cyber.security.1_enrolments)*100, 2))`% decrease between them. This leads onto further questions as to why this may be, which will be explored towards the latter portion of this report. 
+
+# **4.2. Where are the majority of students situated?**
+
+```{r countries_table, echo=FALSE}
+countries_w_name <- countries %>%
+  mutate(country_name = countrycode(sourcevar = detected_country,          
+                                    origin = "iso2c",                           
+                                    destination = "country.name",              
+                                    custom_match = c("XK" = "Kosovo"))) %>% 
+  mutate(region = countrycode(sourcevar = country_name,                   
+                              origin = "country.name",                     
+                              destination = "region",                      
+                              custom_match = c("Réunion" = "Sub-Saharan Africa"))) 
+
+countries_w_name %>%
+  head(3) %>%
+  gt() %>%       
+  tab_header(title = "Number of Student Enrolments by Country and Region") %>%
+  cols_label(detected_country = "Detected Country", n = "Number of Students", 
+             country_name = "Country", region = "Region") 
+```
+
+
+
+```{r countries_plot, echo=FALSE}
+country_boxplot <- ggplot(countries_w_name, aes(x=region, y=n, fill=region)) +
+  geom_boxplot() +
+  geom_point(position=position_jitterdodge(),alpha=0.3) +
+  scale_y_log10() +
+  theme_minimal() +
+  labs(title = "Number of student enrolments by country and region, highlighting the most and least enrolled countries",
+       x = "Region", y = "Number of enrolments (log scale)") 
+
+head_tail = countries_w_name %>% {       
+  rbind(head(., 10), tail(., 10))        
+} %>%
+  group_by(country_name, n)               
+
+country_boxplot + geom_text_repel(data=head_tail, aes(label=country_name))   
+```
+
+
+
+# **4.3. What are the student demographics and who should be targeted for future marketing perspectives?**
 
 
 ### Recognise the challenges posed by the data 
 
-## Including Plots
+
 
 You can also embed plots, for example:
 
@@ -80,6 +183,12 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-### References
+
+
+# **5. Conclusion**
+
+
+# **6. References**
+
 Higher Education Commission (2016) From bricks to clicks: The potential of data analytics in higher education.  
 https://www.policyconnect.org.uk/research/report-bricks-clicks-potential-data-and-analytics-higher-education
