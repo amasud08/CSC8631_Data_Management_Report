@@ -20,4 +20,4 @@ cyber.security.7_leaving.survey.responses$run = 7
 # joining data together 
 pasted_leaving_responses <- mget(paste0("cyber.security.", 4:7, "_leaving.survey.responses"))    # combine the data together
 all_leaving_responses <- reduce(pasted_leaving_responses, full_join)                             # create a join between the data
-leaving_responses <- inner_join(all_leaving_responses, all_enrolments, by = c("learner_id", "run"))       # join the data with all enrollments to include data on when students enrolled
+# leaving_responses <- inner_join(all_leaving_responses, all_enrolments, by = c("learner_id", "run"))       # join the data with all enrollments to include data on when students enrolled
