@@ -1,16 +1,11 @@
-# Want to start exploring the leaving reponses data 
-# (This has been combined with the all_enrollments data - see code in munge file)
+# Want to start exploring the leaving responses data 
 
 # exploring the combined datasets to see the full list of columns
 head(leaving_responses)
 
-# Creating a new dataframe with the original leaving_responses dataframe and just adding the enrolled_at column from the all_enrolments file
-new_leaving_responses <- leaving_responses %>%
-  select(learner_id, enrolled_at, left_at, leaving_reason, last_completed_step, last_completed_week_number, run)
-
 
 # looking at the reasons why students left
-reasons <- new_leaving_responses %>%
+reasons <- all_leaving_responses %>%
   count(leaving_reason) %>%                                       # counting the number of students that provided reasons for leaving
   mutate(str_replace_all(leaving_reason, "â€™", "'"))             # Replacing incorrect characters in the string
 # You may have errors with replacing the string depending on your system set-up

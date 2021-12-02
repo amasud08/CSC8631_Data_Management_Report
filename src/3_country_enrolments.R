@@ -16,6 +16,16 @@ countries <- all_enrolments %>%
   drop_na() %>%                       # removing all NAs
   arrange(desc(n))                    # arranging the data in order of the most enrollments by country
 
+# Tried this plot initially but it didn't really show anything
+ggplot(countries, aes(x=detected_country, y=n)) +
+  geom_point(aes(colour=detected_country), size = 2, show.legend = FALSE) +    # Set the colour as the countries
+  geom_text(aes(detected_country, label = detected_country), nudge_x = 3) +    # moved the text out of the way of the points
+  scale_y_log10() +                                                            # Set the scale to a log scale to ensure 
+  theme_minimal() +                                                            # Made the background lighter
+  theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) +       # removed the x axis labels as there were too many 
+  labs(title = "Initial Plot: Number of student enrolments by country",
+       x = "Country", y = "Numbers of enrolment (log scale)") 
+
 
 # manipulating the data to add country name and region - Run code
 countries_w_name <- countries %>%
@@ -27,13 +37,13 @@ countries_w_name <- countries %>%
   mutate(region = countrycode(sourcevar = country_name,                    # Pairing the new country name column with countrycode's region
                               origin = "country.name",                     # taking the new country name column
                               destination = "region",                      # and pairing that with region
-                              custom_match = c("Réunion" = "Sub-Saharan Africa"))) # initial analysis showed that there was no match with Réunion so adding that manually
+                              custom_match = c("RÃ©union" = "Sub-Saharan Africa"))) # initial analysis showed that there was no match with RÃ©union so adding that manually
 
 
-# Plotting a boxplot tp show where the students are from by country and region 
+# Decided to try a boxplot instead to show where the students are from by country and region 
 country_boxplot <- ggplot(countries_w_name, aes(x=region, y=n, fill=region)) +
-  geom_boxplot() +
-  geom_point(position=position_jitterdodge(),alpha=0.3) +
+  geom_boxplot() +                                                               # tried a boxplot this time
+  geom_point(position=position_jitterdodge(),alpha=0.3) +                        # including the points, lightened them and ensured their positioning is good
   scale_y_log10() +
   theme_minimal() +
   labs(title = "Number of student enrolments by country and region, highlighting the most and least enrolled countries",
@@ -47,4 +57,5 @@ head_tail = countries_w_name %>% {       # Pipe the data
 
 country_boxplot + geom_text_repel(data=head_tail, aes(label=country_name))   # layer the original plot with the text from the head_tail data 
 
-
+# Save the plot as an image
+ggsave(filename = 'graphs/2_enrolments_by_region.png', dpi=600, width=4.5, height=3, units="in", scale=3) 

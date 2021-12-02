@@ -16,5 +16,10 @@ plot_num_of_students <- ggplot(num_of_students_per_run, aes(x=run, y=n)) +
 
 plot_num_of_students
 
+
+# Save the plot as an image
+ggsave(filename = 'graphs/1_number_of_enrolments.png', dpi=600)
+
+
 ### This leads to questions as to why students are enrolling on the course less over time. 
 ### It's difficult to answer this with the data given. 

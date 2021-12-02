@@ -30,6 +30,8 @@ student_gender_plot <- ggplot(student_gender, aes(x=gender, y=n)) +
 
 student_gender_plot
 
+# Save the plot as an image (make sure you run the plot first)
+ggsave(filename = 'graphs/3_student_gender.png', dpi=600, width=3, height=3, units="in", scale=3) 
 
 ## Now want to look at age-range
 all_enrolments %>%
@@ -57,6 +59,8 @@ student_age_plot <- ggplot(student_age, aes(x=age_range, y=n)) +
 
 student_age_plot
 
+# Save the plot as an image (make sure you run the plot first)
+ggsave(filename = 'graphs/4_student_age.png', dpi=600, width=3, height=3, units="in", scale=3) 
 
 
 ## Now want to look at highest_education_level
@@ -84,6 +88,9 @@ student_education_plot <- ggplot(student_education, aes(x=highest_education_leve
   theme(axis.text.x = element_text(angle = 90))            # want the text to be vertical to fit neatly
 
 student_education_plot
+
+# Save the plot as an image (make sure you run the plot first)
+ggsave(filename = 'graphs/5_student_education.png', dpi=600, width=3, height=3, units="in", scale=3) 
 
 
 ## Now want to look at employment status
@@ -122,3 +129,6 @@ student_employment_plot <- ggplot(student_employment2, aes(x=employment_status, 
   theme(axis.text.x = element_text(angle = 90))
 
 student_employment_plot
+
+# Save the plot as an image (make sure you run the plot first)
+ggsave(filename = 'graphs/6_student_employment.png', dpi=600, width=3, height=3, units="in", scale=3) 
