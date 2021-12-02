@@ -1,0 +1,39 @@
+---
+title: 
+author: 
+date: 
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+```
+
+```{r ProjectTemplate, include=FALSE}
+library(ProjectTemplate)
+load.project()
+```
+
+# **Executive Summary**
+
+* **1. Introduction**
+* **2. Business Understanding**
+
+      2.1 Assumptions
+      
+      2.2 Business Questions
+      
+* **3. Data Understanding** 
+* **4. Data Preparation and Modelling**
+
+      4.1 How many students enrolled per run?
+      
+      4.2. Where are the majority of students situated?
+      
+      4.3. What are the student demographics and who should be targeted for future marketing perspectives?
+      
+      4.4. Further analysis: Reasons for leaving
+      
+* **5. Conclusion**
+* **6. References**
