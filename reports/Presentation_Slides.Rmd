@@ -1,0 +1,116 @@
+---
+title: "**CSC8631 Presentation**"
+subtitle: "An Exploratory Data Analysis of Newcastle University's Future Learn Course in Cyber Security"
+author: "**By Ambreen Masud**"
+output: beamer_presentation
+theme: "Boadilla"
+colortheme: "default"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+```
+
+```{r ProjectTemplate, include=FALSE}
+library(ProjectTemplate)
+load.project()
+```
+
+# **Business and Data Understanding**
+
+* Newcastle University in conjunction with Future Learn 
+
+* Business questions
+
+
+    How many students enrolled per run?
+
+    Where are the majority of students situated?
+
+    What are the student demographics and who should be targeted for future marketing perspectives?
+
+* Cyber Security:Safety at Home, Online, in Life Dataset:
+
+
+    Enrolments (7 files)
+
+# **How many students enrolled per run?**
+
+```{r number_of_students, echo=FALSE}
+# Plotting the data to see what it shows
+plot_num_of_students <- ggplot(num_of_students_per_run, aes(x=run, y=n)) +
+  geom_line() +                        # including a line to highlight 
+  geom_point(colour="deeppink1", size=3) +     # changing the colour of the points 
+  xlim(0, 7) +                         # setting the limits of the x axis
+  ylim(0, 15000) +                     # setting the limits of the y axis
+  theme_light() +                      # want a white background 
+  labs(title = "Number of student enrolments per run",
+       x = "Run", y = "Number of students") 
+
+plot_num_of_students
+```
+
+# **Where are the majority of students situated?**
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('/Desktop/CSC8631_Report/graphs/2_enrolments_by_region.png')
+```
+
+# **What are the student demographics and who should be targeted for future marketing perspectives?**
+
+* Gender
+* Age range
+* Education level
+* Employment
+
+# **Gender**
+
+```{r echo=FALSE, out.width='90%', out.height='90%'}
+knitr::include_graphics('/Desktop/CSC8631_Report/graphs/3_student_gender.png')
+```
+
+# **Age Range**
+
+```{r echo=FALSE, out.width='90%', out.height='90%'}
+knitr::include_graphics('/Desktop/CSC8631_Report/graphs/4_student_age.png') 
+```
+
+# **Education Level**
+
+```{r echo=FALSE, out.width='90%', out.height='90%'}
+knitr::include_graphics('/Desktop/CSC8631_Report/graphs/5_student_education.png') 
+```
+
+# **Employment**
+
+```{r echo=FALSE, out.width='90%', out.height='90%'}
+knitr::include_graphics('/Desktop/CSC8631_Report/graphs/6_student_employment.png') 
+```
+
+# **Further analysis: Reasons for leaving**
+
+```{r reasons, echo=FALSE}
+reasons <- all_leaving_responses %>%
+  count(leaving_reason) %>%                                       
+  mutate(str_replace_all(leaving_reason, "â€™", "'"))            
+
+reasons <- reasons %>%                              
+  rename(leaving_reasons = `str_replace_all(leaving_reason, "â\\200\\231", "'")`) %>%   
+  select(-leaving_reason)                                                               
+
+reasons_plot <- ggplot(reasons, aes(x=reorder(leaving_reasons, -n), y=n)) +
+  geom_bar(aes(fill=leaving_reasons), stat="identity", show.legend = FALSE) +
+  coord_flip() +
+  labs(title="Student reasons for leaving",
+       x="Reasons for leaving", y="Number of students") 
+
+reasons_plot
+```
+
+# **Conclusion**
+
+* 83.73% decrease between run 1 and run 6
+* Global reach of the course with students from 199 countries
+* Typical student tends to be educated and in employment
+* Opportunities for marketing and wider participation
